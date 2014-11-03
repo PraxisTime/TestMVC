@@ -1,0 +1,894 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MPPLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="hEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="SSN" Type="nvarchar" MaxLength="10" />
+          <Property Name="Badge" Type="nvarchar" MaxLength="200" />
+          <Property Name="EmployerID" Type="int" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Salutation" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PayGroupID" Type="int" />
+          <Property Name="TimeGroupID" Type="int" />
+          <Property Name="WorkCodeCountryID" Type="int" />
+          <Property Name="TimeSheetWorkCodeID" Type="int" />
+          <Property Name="CustomTimeRule" Type="nvarchar" MaxLength="1" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="LastHireDate" Type="datetime" />
+          <Property Name="AdjSeniorityDate" Type="datetime" />
+          <Property Name="OriginalHireDate" Type="datetime" />
+          <Property Name="MaritialStatus" Type="int" />
+          <Property Name="SystemValueCodeID" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="EthnicOrigin" Type="int" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Disability" Type="int" />
+          <Property Name="Smoker" Type="int" />
+          <Property Name="EffectiveDate" Type="datetime" />
+          <Property Name="ChangeDate" Type="datetime" />
+          <Property Name="ReCalculate" Type="nvarchar" MaxLength="1" />
+          <Property Name="Exempt" Type="int" />
+          <Property Name="SeniorityHours" Type="decimal" Precision="14" Scale="2" />
+        </EntityType>
+        <EntityType Name="hEmployeeAddresses">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Type" Type="int" />
+          <Property Name="PrimaryAddress" Type="nvarchar" MaxLength="1" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="State" Type="int" />
+          <Property Name="Country" Type="int" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Status" Type="int" />
+          <Property Name="EffectiveDate" Type="datetime" />
+          <Property Name="ChangeDate" Type="datetime" />
+          <Property Name="County" Type="nvarchar" MaxLength="30" />
+          <Property Name="Language" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sUserAccess">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MPPL.dbo.sUserOptions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sUserOptions">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="SetupCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="SetupValue" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sUsers">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="200" />
+          <Property Name="Password" Type="binary" MaxLength="20" Nullable="false" />
+          <Property Name="CustomCriteria" Type="nvarchar" MaxLength="500" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Locked" Type="bit" />
+          <Property Name="SecretQuestion" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecretAnswer" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassEffectiveDate" Type="datetime" />
+          <Property Name="OldPass1" Type="binary" MaxLength="20" />
+          <Property Name="OldPass2" Type="varchar" MaxLength="20" />
+          <Property Name="OldPass3" Type="varchar" MaxLength="20" />
+          <Property Name="OldPass4" Type="varchar" MaxLength="20" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Ldetails" Type="bit" />
+          <Property Name="ViewHeirarchy" Type="nvarchar" MaxLength="10" />
+          <Property Name="TAprSupervisorId" Type="int" />
+          <Property Name="TAprStartDate" Type="datetime" />
+          <Property Name="TAprEndDate" Type="datetime" />
+          <Property Name="ChangeDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MPPL.dbo.vEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vEmployee">
+          <Key>
+            <PropertyRef Name="EMPLOYEEID" />
+            <PropertyRef Name="PAYGROUPCODE" />
+            <PropertyRef Name="PAYGROUPDESC" />
+            <PropertyRef Name="TIMEGROUPCODE" />
+            <PropertyRef Name="TIMEGROUPDESC" />
+            <PropertyRef Name="LEVEL1" />
+            <PropertyRef Name="LEVEL2" />
+            <PropertyRef Name="LEVEL3" />
+            <PropertyRef Name="LEVEL4" />
+            <PropertyRef Name="LEVEL5" />
+            <PropertyRef Name="LEVEL6" />
+            <PropertyRef Name="LEVEL7" />
+            <PropertyRef Name="LEVEL8" />
+            <PropertyRef Name="LEVEL9" />
+            <PropertyRef Name="LEVEL10" />
+            <PropertyRef Name="LEVELCODE1" />
+            <PropertyRef Name="LEVELCODE2" />
+            <PropertyRef Name="LEVELCODE3" />
+            <PropertyRef Name="LEVELCODE4" />
+            <PropertyRef Name="LEVELCODE5" />
+            <PropertyRef Name="LEVELCODE6" />
+            <PropertyRef Name="LEVELCODE7" />
+            <PropertyRef Name="LEVELCODE8" />
+            <PropertyRef Name="LEVELCODE9" />
+            <PropertyRef Name="LEVELCODE10" />
+            <PropertyRef Name="JOBCODE" />
+            <PropertyRef Name="SALARIEDHOURLY" />
+            <PropertyRef Name="OVERDAY" />
+            <PropertyRef Name="OVERDAYTIME" />
+            <PropertyRef Name="UNITRATE" />
+            <PropertyRef Name="EXEMPT" />
+            <PropertyRef Name="ADJSENIORITYDATE" />
+            <PropertyRef Name="LEVELDESC1" />
+            <PropertyRef Name="LEVELDESC2" />
+            <PropertyRef Name="LEVELDESC3" />
+            <PropertyRef Name="LEVELDESC4" />
+            <PropertyRef Name="LEVELDESC5" />
+            <PropertyRef Name="LEVELDESC6" />
+            <PropertyRef Name="LEVELDESC7" />
+            <PropertyRef Name="LEVELDESC8" />
+            <PropertyRef Name="LEVELDESC9" />
+            <PropertyRef Name="LEVELDESC10" />
+            <PropertyRef Name="JOBDESC" />
+          </Key>
+          <Property Name="EMPLOYERID" Type="int" />
+          <Property Name="EMPLOYEEID" Type="int" Nullable="false" />
+          <Property Name="EMPLOYEENUMBER" Type="nvarchar" MaxLength="20" />
+          <Property Name="BADGE" Type="nvarchar" MaxLength="200" />
+          <Property Name="EMPNAME" Type="nvarchar" MaxLength="204" />
+          <Property Name="LASTNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="FIRSTNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="BIRTHDATE" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="200" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="PAYGROUPCODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PAYGROUPDESC" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TIMEGROUPCODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TIMEGROUPDESC" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="PERIODSTART" Type="datetime" />
+          <Property Name="PERIODEND" Type="datetime" />
+          <Property Name="NEXTSTART" Type="datetime" />
+          <Property Name="NEXTEND" Type="datetime" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="EMPLOYERDESC" Type="nvarchar" MaxLength="50" />
+          <Property Name="TIMEGROUPID" Type="int" />
+          <Property Name="PAYGROUPID" Type="int" />
+          <Property Name="JOBCODEID" Type="int" />
+          <Property Name="ADDRESS1" Type="nvarchar" MaxLength="100" />
+          <Property Name="CITY" Type="nvarchar" MaxLength="30" />
+          <Property Name="POSTALCODE" Type="nvarchar" MaxLength="10" />
+          <Property Name="EMPLOYERCODE" Type="nvarchar" MaxLength="30" />
+          <Property Name="LEVEL1" Type="int" Nullable="false" />
+          <Property Name="LEVEL2" Type="int" Nullable="false" />
+          <Property Name="LEVEL3" Type="int" Nullable="false" />
+          <Property Name="LEVEL4" Type="int" Nullable="false" />
+          <Property Name="LEVEL5" Type="int" Nullable="false" />
+          <Property Name="LEVEL6" Type="int" Nullable="false" />
+          <Property Name="LEVEL7" Type="int" Nullable="false" />
+          <Property Name="LEVEL8" Type="int" Nullable="false" />
+          <Property Name="LEVEL9" Type="int" Nullable="false" />
+          <Property Name="LEVEL10" Type="int" Nullable="false" />
+          <Property Name="LEVELCODE1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE3" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE4" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE5" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE6" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE7" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE8" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE9" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELCODE10" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="JOBCODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="COUNTRY" Type="nvarchar" MaxLength="30" />
+          <Property Name="FLATAMOUNT" Type="nvarchar" MaxLength="1" />
+          <Property Name="SALARIEDHOURLY" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="FREQUENCYID" Type="int" />
+          <Property Name="TIMESHEETWORKCODEID" Type="int" />
+          <Property Name="LASTHIREDATE" Type="datetime" />
+          <Property Name="MIDDLENAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="SSN" Type="nvarchar" MaxLength="10" />
+          <Property Name="OVERDAY" Type="int" Nullable="false" />
+          <Property Name="OVERDAYTIME" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UNITRATE" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="EXEMPT" Type="int" Nullable="false" />
+          <Property Name="ADJSENIORITYDATE" Type="datetime" Nullable="false" />
+          <Property Name="EMPFREQID" Type="int" />
+          <Property Name="EMPLOYEETYPE" Type="int" />
+          <Property Name="SHIFTID" Type="int" />
+          <Property Name="LEVELDESC1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC3" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC4" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC5" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC6" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC7" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC8" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC9" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVELDESC10" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="JOBDESC" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LEVEL1CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL2CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL3CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL4CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL5CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL6CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL7CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL8CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL9CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL10CDN" Type="nvarchar" MaxLength="100" />
+          <Property Name="JOBCODECDN" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_hEmployeeAddresses_hEmployee">
+          <End Role="hEmployee" Type="Self.hEmployee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="hEmployeeAddresses" Type="Self.hEmployeeAddresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hEmployee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="hEmployeeAddresses">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sUserOptions_sUsers">
+          <End Role="sUsers" Type="Self.sUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="sUserOptions" Type="Self.sUserOptions" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sUsers">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="sUserOptions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MPPLModelStoreContainer">
+          <EntitySet Name="hEmployee" EntityType="Self.hEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hEmployeeAddresses" EntityType="Self.hEmployeeAddresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sUserAccess" EntityType="Self.sUserAccess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sUsers" EntityType="Self.sUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sUserOptions" EntityType="Self.sUserOptions" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sUserOptions].[UserID] AS [UserID], 
+    [sUserOptions].[SetupCode] AS [SetupCode], 
+    [sUserOptions].[SetupValue] AS [SetupValue]
+    FROM [dbo].[sUserOptions] AS [sUserOptions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vEmployee" EntityType="Self.vEmployee" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vEmployee].[EMPLOYERID] AS [EMPLOYERID], 
+    [vEmployee].[EMPLOYEEID] AS [EMPLOYEEID], 
+    [vEmployee].[EMPLOYEENUMBER] AS [EMPLOYEENUMBER], 
+    [vEmployee].[BADGE] AS [BADGE], 
+    [vEmployee].[EMPNAME] AS [EMPNAME], 
+    [vEmployee].[LASTNAME] AS [LASTNAME], 
+    [vEmployee].[FIRSTNAME] AS [FIRSTNAME], 
+    [vEmployee].[BIRTHDATE] AS [BIRTHDATE], 
+    [vEmployee].[EMAIL] AS [EMAIL], 
+    [vEmployee].[STATUS] AS [STATUS], 
+    [vEmployee].[PAYGROUPCODE] AS [PAYGROUPCODE], 
+    [vEmployee].[PAYGROUPDESC] AS [PAYGROUPDESC], 
+    [vEmployee].[TIMEGROUPCODE] AS [TIMEGROUPCODE], 
+    [vEmployee].[TIMEGROUPDESC] AS [TIMEGROUPDESC], 
+    [vEmployee].[PERIODSTART] AS [PERIODSTART], 
+    [vEmployee].[PERIODEND] AS [PERIODEND], 
+    [vEmployee].[NEXTSTART] AS [NEXTSTART], 
+    [vEmployee].[NEXTEND] AS [NEXTEND], 
+    [vEmployee].[PhoneNo] AS [PhoneNo], 
+    [vEmployee].[EMPLOYERDESC] AS [EMPLOYERDESC], 
+    [vEmployee].[TIMEGROUPID] AS [TIMEGROUPID], 
+    [vEmployee].[PAYGROUPID] AS [PAYGROUPID], 
+    [vEmployee].[JOBCODEID] AS [JOBCODEID], 
+    [vEmployee].[ADDRESS1] AS [ADDRESS1], 
+    [vEmployee].[CITY] AS [CITY], 
+    [vEmployee].[POSTALCODE] AS [POSTALCODE], 
+    [vEmployee].[EMPLOYERCODE] AS [EMPLOYERCODE], 
+    [vEmployee].[LEVEL1] AS [LEVEL1], 
+    [vEmployee].[LEVEL2] AS [LEVEL2], 
+    [vEmployee].[LEVEL3] AS [LEVEL3], 
+    [vEmployee].[LEVEL4] AS [LEVEL4], 
+    [vEmployee].[LEVEL5] AS [LEVEL5], 
+    [vEmployee].[LEVEL6] AS [LEVEL6], 
+    [vEmployee].[LEVEL7] AS [LEVEL7], 
+    [vEmployee].[LEVEL8] AS [LEVEL8], 
+    [vEmployee].[LEVEL9] AS [LEVEL9], 
+    [vEmployee].[LEVEL10] AS [LEVEL10], 
+    [vEmployee].[LEVELCODE1] AS [LEVELCODE1], 
+    [vEmployee].[LEVELCODE2] AS [LEVELCODE2], 
+    [vEmployee].[LEVELCODE3] AS [LEVELCODE3], 
+    [vEmployee].[LEVELCODE4] AS [LEVELCODE4], 
+    [vEmployee].[LEVELCODE5] AS [LEVELCODE5], 
+    [vEmployee].[LEVELCODE6] AS [LEVELCODE6], 
+    [vEmployee].[LEVELCODE7] AS [LEVELCODE7], 
+    [vEmployee].[LEVELCODE8] AS [LEVELCODE8], 
+    [vEmployee].[LEVELCODE9] AS [LEVELCODE9], 
+    [vEmployee].[LEVELCODE10] AS [LEVELCODE10], 
+    [vEmployee].[JOBCODE] AS [JOBCODE], 
+    [vEmployee].[COUNTRY] AS [COUNTRY], 
+    [vEmployee].[FLATAMOUNT] AS [FLATAMOUNT], 
+    [vEmployee].[SALARIEDHOURLY] AS [SALARIEDHOURLY], 
+    [vEmployee].[FREQUENCYID] AS [FREQUENCYID], 
+    [vEmployee].[TIMESHEETWORKCODEID] AS [TIMESHEETWORKCODEID], 
+    [vEmployee].[LASTHIREDATE] AS [LASTHIREDATE], 
+    [vEmployee].[MIDDLENAME] AS [MIDDLENAME], 
+    [vEmployee].[SSN] AS [SSN], 
+    [vEmployee].[OVERDAY] AS [OVERDAY], 
+    [vEmployee].[OVERDAYTIME] AS [OVERDAYTIME], 
+    [vEmployee].[UNITRATE] AS [UNITRATE], 
+    [vEmployee].[EXEMPT] AS [EXEMPT], 
+    [vEmployee].[ADJSENIORITYDATE] AS [ADJSENIORITYDATE], 
+    [vEmployee].[EMPFREQID] AS [EMPFREQID], 
+    [vEmployee].[EMPLOYEETYPE] AS [EMPLOYEETYPE], 
+    [vEmployee].[SHIFTID] AS [SHIFTID], 
+    [vEmployee].[LEVELDESC1] AS [LEVELDESC1], 
+    [vEmployee].[LEVELDESC2] AS [LEVELDESC2], 
+    [vEmployee].[LEVELDESC3] AS [LEVELDESC3], 
+    [vEmployee].[LEVELDESC4] AS [LEVELDESC4], 
+    [vEmployee].[LEVELDESC5] AS [LEVELDESC5], 
+    [vEmployee].[LEVELDESC6] AS [LEVELDESC6], 
+    [vEmployee].[LEVELDESC7] AS [LEVELDESC7], 
+    [vEmployee].[LEVELDESC8] AS [LEVELDESC8], 
+    [vEmployee].[LEVELDESC9] AS [LEVELDESC9], 
+    [vEmployee].[LEVELDESC10] AS [LEVELDESC10], 
+    [vEmployee].[JOBDESC] AS [JOBDESC], 
+    [vEmployee].[LEVEL1CDN] AS [LEVEL1CDN], 
+    [vEmployee].[LEVEL2CDN] AS [LEVEL2CDN], 
+    [vEmployee].[LEVEL3CDN] AS [LEVEL3CDN], 
+    [vEmployee].[LEVEL4CDN] AS [LEVEL4CDN], 
+    [vEmployee].[LEVEL5CDN] AS [LEVEL5CDN], 
+    [vEmployee].[LEVEL6CDN] AS [LEVEL6CDN], 
+    [vEmployee].[LEVEL7CDN] AS [LEVEL7CDN], 
+    [vEmployee].[LEVEL8CDN] AS [LEVEL8CDN], 
+    [vEmployee].[LEVEL9CDN] AS [LEVEL9CDN], 
+    [vEmployee].[LEVEL10CDN] AS [LEVEL10CDN], 
+    [vEmployee].[JOBCODECDN] AS [JOBCODECDN]
+    FROM [dbo].[vEmployee] AS [vEmployee]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_hEmployeeAddresses_hEmployee" Association="Self.FK_hEmployeeAddresses_hEmployee">
+            <End Role="hEmployee" EntitySet="hEmployee" />
+            <End Role="hEmployeeAddresses" EntitySet="hEmployeeAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sUserOptions_sUsers" Association="Self.FK_sUserOptions_sUsers">
+            <End Role="sUsers" EntitySet="sUsers" />
+            <End Role="sUserOptions" EntitySet="sUserOptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MPPLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="hEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SSN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Badge" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EmployerID" Type="Int32" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Salutation" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PayGroupID" Type="Int32" />
+          <Property Name="TimeGroupID" Type="Int32" />
+          <Property Name="WorkCodeCountryID" Type="Int32" />
+          <Property Name="TimeSheetWorkCodeID" Type="Int32" />
+          <Property Name="CustomTimeRule" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="LastHireDate" Type="DateTime" Precision="3" />
+          <Property Name="AdjSeniorityDate" Type="DateTime" Precision="3" />
+          <Property Name="OriginalHireDate" Type="DateTime" Precision="3" />
+          <Property Name="MaritialStatus" Type="Int32" />
+          <Property Name="SystemValueCodeID" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EthnicOrigin" Type="Int32" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Disability" Type="Int32" />
+          <Property Name="Smoker" Type="Int32" />
+          <Property Name="EffectiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <Property Name="ReCalculate" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Exempt" Type="Int32" />
+          <Property Name="SeniorityHours" Type="Decimal" Precision="14" Scale="2" />
+          <NavigationProperty Name="hEmployeeAddresses" Relationship="Self.FK_hEmployeeAddresses_hEmployee" FromRole="hEmployee" ToRole="hEmployeeAddresses" />
+        </EntityType>
+        <EntityType Name="hEmployeeAddress">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="PrimaryAddress" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="Country" Type="Int32" />
+          <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="EffectiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="hEmployee" Relationship="Self.FK_hEmployeeAddresses_hEmployee" FromRole="hEmployeeAddresses" ToRole="hEmployee" />
+        </EntityType>
+        <EntityType Name="sUserAccess">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="Binary" MaxLength="20" FixedLength="true" Nullable="false" />
+          <Property Name="CustomCriteria" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Locked" Type="Boolean" />
+          <Property Name="SecretQuestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecretAnswer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassEffectiveDate" Type="DateTime" Precision="3" />
+          <Property Name="OldPass1" Type="Binary" MaxLength="20" FixedLength="true" />
+          <Property Name="OldPass2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OldPass3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OldPass4" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ldetails" Type="Boolean" />
+          <Property Name="ViewHeirarchy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TAprSupervisorId" Type="Int32" />
+          <Property Name="TAprStartDate" Type="DateTime" Precision="3" />
+          <Property Name="TAprEndDate" Type="DateTime" Precision="3" />
+          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sUserOption" Relationship="Self.FK_sUserOptions_sUsers" FromRole="sUsers" ToRole="sUserOptions" />
+        </EntityType>
+        <EntityType Name="sUserOption">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="SetupCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SetupValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="sUser" Relationship="Self.FK_sUserOptions_sUsers" FromRole="sUserOptions" ToRole="sUsers" />
+        </EntityType>
+        <EntityType Name="vEmployee">
+          <Key>
+            <PropertyRef Name="EMPLOYEEID" />
+            <PropertyRef Name="PAYGROUPCODE" />
+            <PropertyRef Name="PAYGROUPDESC" />
+            <PropertyRef Name="TIMEGROUPCODE" />
+            <PropertyRef Name="TIMEGROUPDESC" />
+            <PropertyRef Name="LEVEL1" />
+            <PropertyRef Name="LEVEL2" />
+            <PropertyRef Name="LEVEL3" />
+            <PropertyRef Name="LEVEL4" />
+            <PropertyRef Name="LEVEL5" />
+            <PropertyRef Name="LEVEL6" />
+            <PropertyRef Name="LEVEL7" />
+            <PropertyRef Name="LEVEL8" />
+            <PropertyRef Name="LEVEL9" />
+            <PropertyRef Name="LEVEL10" />
+            <PropertyRef Name="LEVELCODE1" />
+            <PropertyRef Name="LEVELCODE2" />
+            <PropertyRef Name="LEVELCODE3" />
+            <PropertyRef Name="LEVELCODE4" />
+            <PropertyRef Name="LEVELCODE5" />
+            <PropertyRef Name="LEVELCODE6" />
+            <PropertyRef Name="LEVELCODE7" />
+            <PropertyRef Name="LEVELCODE8" />
+            <PropertyRef Name="LEVELCODE9" />
+            <PropertyRef Name="LEVELCODE10" />
+            <PropertyRef Name="JOBCODE" />
+            <PropertyRef Name="SALARIEDHOURLY" />
+            <PropertyRef Name="OVERDAY" />
+            <PropertyRef Name="OVERDAYTIME" />
+            <PropertyRef Name="UNITRATE" />
+            <PropertyRef Name="EXEMPT" />
+            <PropertyRef Name="ADJSENIORITYDATE" />
+            <PropertyRef Name="LEVELDESC1" />
+            <PropertyRef Name="LEVELDESC2" />
+            <PropertyRef Name="LEVELDESC3" />
+            <PropertyRef Name="LEVELDESC4" />
+            <PropertyRef Name="LEVELDESC5" />
+            <PropertyRef Name="LEVELDESC6" />
+            <PropertyRef Name="LEVELDESC7" />
+            <PropertyRef Name="LEVELDESC8" />
+            <PropertyRef Name="LEVELDESC9" />
+            <PropertyRef Name="LEVELDESC10" />
+            <PropertyRef Name="JOBDESC" />
+          </Key>
+          <Property Name="EMPLOYERID" Type="Int32" />
+          <Property Name="EMPLOYEEID" Type="Int32" Nullable="false" />
+          <Property Name="EMPLOYEENUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BADGE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EMPNAME" Type="String" MaxLength="204" FixedLength="false" Unicode="true" />
+          <Property Name="LASTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BIRTHDATE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="PAYGROUPCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PAYGROUPDESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TIMEGROUPCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TIMEGROUPDESC" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PERIODSTART" Type="DateTime" Precision="3" />
+          <Property Name="PERIODEND" Type="DateTime" Precision="3" />
+          <Property Name="NEXTSTART" Type="DateTime" Precision="3" />
+          <Property Name="NEXTEND" Type="DateTime" Precision="3" />
+          <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYERDESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TIMEGROUPID" Type="Int32" />
+          <Property Name="PAYGROUPID" Type="Int32" />
+          <Property Name="JOBCODEID" Type="Int32" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CITY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="POSTALCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYERCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL1" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL2" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL3" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL4" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL5" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL6" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL7" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL8" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL9" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL10" Type="Int32" Nullable="false" />
+          <Property Name="LEVELCODE1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE4" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE5" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE6" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE7" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE8" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE9" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELCODE10" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JOBCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="FLATAMOUNT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="SALARIEDHOURLY" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FREQUENCYID" Type="Int32" />
+          <Property Name="TIMESHEETWORKCODEID" Type="Int32" />
+          <Property Name="LASTHIREDATE" Type="DateTime" Precision="3" />
+          <Property Name="MIDDLENAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SSN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OVERDAY" Type="Int32" Nullable="false" />
+          <Property Name="OVERDAYTIME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UNITRATE" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="EXEMPT" Type="Int32" Nullable="false" />
+          <Property Name="ADJSENIORITYDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EMPFREQID" Type="Int32" />
+          <Property Name="EMPLOYEETYPE" Type="Int32" />
+          <Property Name="SHIFTID" Type="Int32" />
+          <Property Name="LEVELDESC1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC4" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC5" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC6" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC7" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC8" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC9" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVELDESC10" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JOBDESC" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEVEL1CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL2CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL3CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL4CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL5CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL6CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL7CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL8CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL9CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL10CDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JOBCODECDN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_hEmployeeAddresses_hEmployee">
+          <End Role="hEmployee" Type="Self.hEmployee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="hEmployeeAddresses" Type="Self.hEmployeeAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hEmployee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="hEmployeeAddresses">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sUserOptions_sUsers">
+          <End Role="sUsers" Type="Self.sUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="sUserOptions" Type="Self.sUserOption" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sUsers">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="sUserOptions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MPPLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="hEmployees" EntityType="Self.hEmployee" />
+          <EntitySet Name="hEmployeeAddresses" EntityType="Self.hEmployeeAddress" />
+          <EntitySet Name="sUserAccesses" EntityType="Self.sUserAccess" />
+          <EntitySet Name="sUsers" EntityType="Self.sUser" />
+          <EntitySet Name="sUserOptions" EntityType="Self.sUserOption" />
+          <EntitySet Name="vEmployees" EntityType="Self.vEmployee" />
+          <AssociationSet Name="FK_hEmployeeAddresses_hEmployee" Association="Self.FK_hEmployeeAddresses_hEmployee">
+            <End Role="hEmployee" EntitySet="hEmployees" />
+            <End Role="hEmployeeAddresses" EntitySet="hEmployeeAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sUserOptions_sUsers" Association="Self.FK_sUserOptions_sUsers">
+            <End Role="sUsers" EntitySet="sUsers" />
+            <End Role="sUserOptions" EntitySet="sUserOptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MPPLModelStoreContainer" CdmEntityContainer="MPPLEntities">
+          <EntitySetMapping Name="hEmployees">
+            <EntityTypeMapping TypeName="MPPLModel.hEmployee">
+              <MappingFragment StoreEntitySet="hEmployee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="Badge" ColumnName="Badge" />
+                <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="PayGroupID" ColumnName="PayGroupID" />
+                <ScalarProperty Name="TimeGroupID" ColumnName="TimeGroupID" />
+                <ScalarProperty Name="WorkCodeCountryID" ColumnName="WorkCodeCountryID" />
+                <ScalarProperty Name="TimeSheetWorkCodeID" ColumnName="TimeSheetWorkCodeID" />
+                <ScalarProperty Name="CustomTimeRule" ColumnName="CustomTimeRule" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="LastHireDate" ColumnName="LastHireDate" />
+                <ScalarProperty Name="AdjSeniorityDate" ColumnName="AdjSeniorityDate" />
+                <ScalarProperty Name="OriginalHireDate" ColumnName="OriginalHireDate" />
+                <ScalarProperty Name="MaritialStatus" ColumnName="MaritialStatus" />
+                <ScalarProperty Name="SystemValueCodeID" ColumnName="SystemValueCodeID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EthnicOrigin" ColumnName="EthnicOrigin" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Disability" ColumnName="Disability" />
+                <ScalarProperty Name="Smoker" ColumnName="Smoker" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="ReCalculate" ColumnName="ReCalculate" />
+                <ScalarProperty Name="Exempt" ColumnName="Exempt" />
+                <ScalarProperty Name="SeniorityHours" ColumnName="SeniorityHours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hEmployeeAddresses">
+            <EntityTypeMapping TypeName="MPPLModel.hEmployeeAddress">
+              <MappingFragment StoreEntitySet="hEmployeeAddresses">
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PrimaryAddress" ColumnName="PrimaryAddress" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sUserAccesses">
+            <EntityTypeMapping TypeName="MPPLModel.sUserAccess">
+              <MappingFragment StoreEntitySet="sUserAccess">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sUsers">
+            <EntityTypeMapping TypeName="MPPLModel.sUser">
+              <MappingFragment StoreEntitySet="sUsers">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CustomCriteria" ColumnName="CustomCriteria" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="SecretQuestion" ColumnName="SecretQuestion" />
+                <ScalarProperty Name="SecretAnswer" ColumnName="SecretAnswer" />
+                <ScalarProperty Name="PassEffectiveDate" ColumnName="PassEffectiveDate" />
+                <ScalarProperty Name="OldPass1" ColumnName="OldPass1" />
+                <ScalarProperty Name="OldPass2" ColumnName="OldPass2" />
+                <ScalarProperty Name="OldPass3" ColumnName="OldPass3" />
+                <ScalarProperty Name="OldPass4" ColumnName="OldPass4" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Ldetails" ColumnName="Ldetails" />
+                <ScalarProperty Name="ViewHeirarchy" ColumnName="ViewHeirarchy" />
+                <ScalarProperty Name="TAprSupervisorId" ColumnName="TAprSupervisorId" />
+                <ScalarProperty Name="TAprStartDate" ColumnName="TAprStartDate" />
+                <ScalarProperty Name="TAprEndDate" ColumnName="TAprEndDate" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sUserOptions">
+            <EntityTypeMapping TypeName="MPPLModel.sUserOption">
+              <MappingFragment StoreEntitySet="sUserOptions">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SetupCode" ColumnName="SetupCode" />
+                <ScalarProperty Name="SetupValue" ColumnName="SetupValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vEmployees">
+            <EntityTypeMapping TypeName="MPPLModel.vEmployee">
+              <MappingFragment StoreEntitySet="vEmployee">
+                <ScalarProperty Name="EMPLOYERID" ColumnName="EMPLOYERID" />
+                <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+                <ScalarProperty Name="EMPLOYEENUMBER" ColumnName="EMPLOYEENUMBER" />
+                <ScalarProperty Name="BADGE" ColumnName="BADGE" />
+                <ScalarProperty Name="EMPNAME" ColumnName="EMPNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="PAYGROUPCODE" ColumnName="PAYGROUPCODE" />
+                <ScalarProperty Name="PAYGROUPDESC" ColumnName="PAYGROUPDESC" />
+                <ScalarProperty Name="TIMEGROUPCODE" ColumnName="TIMEGROUPCODE" />
+                <ScalarProperty Name="TIMEGROUPDESC" ColumnName="TIMEGROUPDESC" />
+                <ScalarProperty Name="PERIODSTART" ColumnName="PERIODSTART" />
+                <ScalarProperty Name="PERIODEND" ColumnName="PERIODEND" />
+                <ScalarProperty Name="NEXTSTART" ColumnName="NEXTSTART" />
+                <ScalarProperty Name="NEXTEND" ColumnName="NEXTEND" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="EMPLOYERDESC" ColumnName="EMPLOYERDESC" />
+                <ScalarProperty Name="TIMEGROUPID" ColumnName="TIMEGROUPID" />
+                <ScalarProperty Name="PAYGROUPID" ColumnName="PAYGROUPID" />
+                <ScalarProperty Name="JOBCODEID" ColumnName="JOBCODEID" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="POSTALCODE" ColumnName="POSTALCODE" />
+                <ScalarProperty Name="EMPLOYERCODE" ColumnName="EMPLOYERCODE" />
+                <ScalarProperty Name="LEVEL1" ColumnName="LEVEL1" />
+                <ScalarProperty Name="LEVEL2" ColumnName="LEVEL2" />
+                <ScalarProperty Name="LEVEL3" ColumnName="LEVEL3" />
+                <ScalarProperty Name="LEVEL4" ColumnName="LEVEL4" />
+                <ScalarProperty Name="LEVEL5" ColumnName="LEVEL5" />
+                <ScalarProperty Name="LEVEL6" ColumnName="LEVEL6" />
+                <ScalarProperty Name="LEVEL7" ColumnName="LEVEL7" />
+                <ScalarProperty Name="LEVEL8" ColumnName="LEVEL8" />
+                <ScalarProperty Name="LEVEL9" ColumnName="LEVEL9" />
+                <ScalarProperty Name="LEVEL10" ColumnName="LEVEL10" />
+                <ScalarProperty Name="LEVELCODE1" ColumnName="LEVELCODE1" />
+                <ScalarProperty Name="LEVELCODE2" ColumnName="LEVELCODE2" />
+                <ScalarProperty Name="LEVELCODE3" ColumnName="LEVELCODE3" />
+                <ScalarProperty Name="LEVELCODE4" ColumnName="LEVELCODE4" />
+                <ScalarProperty Name="LEVELCODE5" ColumnName="LEVELCODE5" />
+                <ScalarProperty Name="LEVELCODE6" ColumnName="LEVELCODE6" />
+                <ScalarProperty Name="LEVELCODE7" ColumnName="LEVELCODE7" />
+                <ScalarProperty Name="LEVELCODE8" ColumnName="LEVELCODE8" />
+                <ScalarProperty Name="LEVELCODE9" ColumnName="LEVELCODE9" />
+                <ScalarProperty Name="LEVELCODE10" ColumnName="LEVELCODE10" />
+                <ScalarProperty Name="JOBCODE" ColumnName="JOBCODE" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="FLATAMOUNT" ColumnName="FLATAMOUNT" />
+                <ScalarProperty Name="SALARIEDHOURLY" ColumnName="SALARIEDHOURLY" />
+                <ScalarProperty Name="FREQUENCYID" ColumnName="FREQUENCYID" />
+                <ScalarProperty Name="TIMESHEETWORKCODEID" ColumnName="TIMESHEETWORKCODEID" />
+                <ScalarProperty Name="LASTHIREDATE" ColumnName="LASTHIREDATE" />
+                <ScalarProperty Name="MIDDLENAME" ColumnName="MIDDLENAME" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="OVERDAY" ColumnName="OVERDAY" />
+                <ScalarProperty Name="OVERDAYTIME" ColumnName="OVERDAYTIME" />
+                <ScalarProperty Name="UNITRATE" ColumnName="UNITRATE" />
+                <ScalarProperty Name="EXEMPT" ColumnName="EXEMPT" />
+                <ScalarProperty Name="ADJSENIORITYDATE" ColumnName="ADJSENIORITYDATE" />
+                <ScalarProperty Name="EMPFREQID" ColumnName="EMPFREQID" />
+                <ScalarProperty Name="EMPLOYEETYPE" ColumnName="EMPLOYEETYPE" />
+                <ScalarProperty Name="SHIFTID" ColumnName="SHIFTID" />
+                <ScalarProperty Name="LEVELDESC1" ColumnName="LEVELDESC1" />
+                <ScalarProperty Name="LEVELDESC2" ColumnName="LEVELDESC2" />
+                <ScalarProperty Name="LEVELDESC3" ColumnName="LEVELDESC3" />
+                <ScalarProperty Name="LEVELDESC4" ColumnName="LEVELDESC4" />
+                <ScalarProperty Name="LEVELDESC5" ColumnName="LEVELDESC5" />
+                <ScalarProperty Name="LEVELDESC6" ColumnName="LEVELDESC6" />
+                <ScalarProperty Name="LEVELDESC7" ColumnName="LEVELDESC7" />
+                <ScalarProperty Name="LEVELDESC8" ColumnName="LEVELDESC8" />
+                <ScalarProperty Name="LEVELDESC9" ColumnName="LEVELDESC9" />
+                <ScalarProperty Name="LEVELDESC10" ColumnName="LEVELDESC10" />
+                <ScalarProperty Name="JOBDESC" ColumnName="JOBDESC" />
+                <ScalarProperty Name="LEVEL1CDN" ColumnName="LEVEL1CDN" />
+                <ScalarProperty Name="LEVEL2CDN" ColumnName="LEVEL2CDN" />
+                <ScalarProperty Name="LEVEL3CDN" ColumnName="LEVEL3CDN" />
+                <ScalarProperty Name="LEVEL4CDN" ColumnName="LEVEL4CDN" />
+                <ScalarProperty Name="LEVEL5CDN" ColumnName="LEVEL5CDN" />
+                <ScalarProperty Name="LEVEL6CDN" ColumnName="LEVEL6CDN" />
+                <ScalarProperty Name="LEVEL7CDN" ColumnName="LEVEL7CDN" />
+                <ScalarProperty Name="LEVEL8CDN" ColumnName="LEVEL8CDN" />
+                <ScalarProperty Name="LEVEL9CDN" ColumnName="LEVEL9CDN" />
+                <ScalarProperty Name="LEVEL10CDN" ColumnName="LEVEL10CDN" />
+                <ScalarProperty Name="JOBCODECDN" ColumnName="JOBCODECDN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

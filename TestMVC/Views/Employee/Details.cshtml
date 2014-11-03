@@ -1,0 +1,266 @@
+﻿@model TestMVC.EntityFramework.hEmployee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>hEmployee</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SSN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SSN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salutation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salutation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NickName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NickName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayGroupID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayGroupID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeGroupID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeGroupID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkCodeCountryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkCodeCountryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeSheetWorkCodeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeSheetWorkCodeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomTimeRule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomTimeRule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastHireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastHireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdjSeniorityDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdjSeniorityDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OriginalHireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OriginalHireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaritialStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaritialStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SystemValueCodeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SystemValueCodeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EthnicOrigin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EthnicOrigin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disability)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Smoker)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Smoker)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EffectiveDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChangeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChangeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReCalculate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReCalculate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exempt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exempt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeniorityHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeniorityHours)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
